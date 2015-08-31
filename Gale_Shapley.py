@@ -1,4 +1,5 @@
 __author__ = 'Hamish Stokes'
+"""Implementation of the Gale-Shapley solution to the stable marriage problem"""
 
 from collections import deque
 
@@ -11,12 +12,12 @@ def main():
         blue = deque()
         pink = []
         while counter > 0:
-            while counter > node_count:
+            while counter > node_count:		#read in blue nodes and save to deque
                 n = input()
-                new_node = deque(int(i) for i in n.split())
+                new_node = deque(int(i) for i in n.split())	#blue prefs are saved in deque
                 blue.append(new_node)
                 counter -= 1
-            n = input()
+            n = input()						#read in pink nodes and save to list
             new_node = [int(i) for i in n.split()]
             pink = pink + [new_node]
             counter -= 1
@@ -24,7 +25,7 @@ def main():
         pink_array = list(end_array)
         b_value = deque(x for x in range(1, node_count+1))
         free_blues = node_count
-        while free_blues != 0:
+        while free_blues != 0:				#loop until no blue nodes are unmatched
             b = b_value[0]
             first = blue[b-1].popleft()
             if pink_array[first - 1] is None:
